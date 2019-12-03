@@ -1,26 +1,37 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import {BrowserRouter, Route, Switch} from 'react-router-dom';
+// import the library to manage routing like above
+// next wrap your Route element in the BrowserRouter element
+// you imported
+
+import Header from './components/Header'
+import Home from './components/Home'
+import About from './components/About'
+import Teachers from './components/Teachers'
+import Courses from './components/Courses'
+import NotFound from "./components/NotFound";
+import Featured from "./components/Featured";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+  return ( 
+    <BrowserRouter>
+      <div className="container">
+        <Header />
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route  path="/about" component={About} />
+          <Route exact path="/teachers" component={Teachers} />
+          <Route  path="/teachers/:topic/:lname-:fname" component={Featured} />
+          <Route  path="/courses" component={Courses} />
+          <Route  component={NotFound} />
+        </Switch>
+      </div>
+    </BrowserRouter>
   );
 }
+// activeStyle = {{ background:oange;}}
+// activeClassName = {{ classValue;}}
+// The codes above describes the methods you can use to add style
+// to a component.
 
 export default App;
